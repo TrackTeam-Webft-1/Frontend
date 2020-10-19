@@ -26,16 +26,7 @@ const LoginContainer = () => {
     
 
     axiosWithAuth()
-      .post(
-        '/login',
-        `grant_type=password&username=${primaryEmail}&password=${password}`,
-        {
-          headers: {
-            Authorization: `Basic ${btoa('lambda:lambda')}`,
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        }
-      )
+      .post()//fill out necessary info
       .then(res => {
         console.log('onSubmit res:', res);
         window.localStorage.setItem('token', res.data.access_token);
