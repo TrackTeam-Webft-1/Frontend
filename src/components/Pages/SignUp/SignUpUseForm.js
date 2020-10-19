@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as yup from 'yup';
-import schema from '../../src/components/pages/SignUp/formSchema';
+import schema from './formSchema';
 
 const initialFormErrors = {
   name: '',
