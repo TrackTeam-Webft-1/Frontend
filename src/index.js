@@ -9,12 +9,14 @@ import {
 
 
 import { SignUpPage } from './components/Pages/SignUp/index';
+import { LoginPage } from './components/Pages/Login/index'
 import './index.css';
 
 function App () {
     return(
         <Router>
             <Switch>
+                <Route path="/login" component={LoginPage} />
                 <Route path="/signup" component={SignUpPage} />
             </Switch>
         </Router>
