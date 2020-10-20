@@ -10,6 +10,8 @@ import {
 import { LandingPage } from './components/Pages/Landing/index';
 import { SignUpPage } from './components/Pages/SignUp/index';
 import { LoginPage } from './components/Pages/Login/index';
+import { UserPage } from './components/Pages/User/index';
+import PrivateRoute from './state/PrivateRoute';
 import NavBar from './components/Common/NavBar';
 import './index.css';
 
@@ -18,6 +20,8 @@ function App () {
         <Router>
             <NavBar />
             <Switch>
+                {/* Switch userPage to PrivateRoute once endpoints are available */}
+                <Route path="/user" component={UserPage} />
                 <Route path="/login" component={LoginPage} />
                 <Route path="/signup" component={SignUpPage} />
                 <Route path="/" exact component={LandingPage} />
