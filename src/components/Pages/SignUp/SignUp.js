@@ -28,7 +28,6 @@ const SignUpContainer = () => {
   let history = useHistory();
 
   const postNewUser = newUser => {
-    debugger;
     axios
       .post(
         'https://virtual-reality-funding.herokuapp.com/api/auth/register',
