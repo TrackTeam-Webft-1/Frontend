@@ -31,7 +31,7 @@ const SignUpContainer = () => {
     debugger;
     axios
       .post(
-        // insert post link,
+        'https://virtual-reality-funding.herokuapp.com/api/auth/register',
         newUser
       )
       .then(res => {
@@ -40,7 +40,7 @@ const SignUpContainer = () => {
         resetForm();
       })
       .catch(err => {
-        console.log(err);
+        console.log('sign up error: ', err);
       });
   };
 

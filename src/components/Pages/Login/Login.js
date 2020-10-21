@@ -23,16 +23,21 @@ const LoginContainer = () => {
   const submit = () => {
     const userName = formValues.userName.trim();
     const password = formValues.password.trim();
+
+    const newUser = {
+      username: userName, 
+      password: password
+    }
     
 
     axiosWithAuth()
-      .post()//fill out necessary info
+      .post('https://virtual-reality-funding.herokuapp.com/api/auth/login', newUser)//fill out necessary info
       .then(res => {
         console.log('onSubmit res:', res);
         window.localStorage.setItem('token', res.data.access_token);
         history.push('/userpage');
       })
-      .catch(err => console.log(err.response))
+      .catch(err => console.log('login error: ', err.response))
       .finally(resetForm());
   };
 

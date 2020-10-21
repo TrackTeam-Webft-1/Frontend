@@ -35,7 +35,7 @@ const UserPage = ({ getData }) => {
     );
   };
   
-  export default UserPage();
+  export default UserPage;
 
   // {userProjects.map(project => (
   //   <ul key={project.projectId} onClick={() => editproject(project)}>

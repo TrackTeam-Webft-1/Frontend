@@ -21,7 +21,8 @@ const useStyles = makeStyles({
 });
 
 //function ProjectCard({ project, editProject, deleteProject })
-function ProjectCard({ project }) {
+function ProjectCard(props) {
+  const { project, updateUserProjects } = props;
   const classes = useStyles();
   const [editing, setEditing] = useState(initialEditing)
   const [projectToEdit, setProjectToEdit] = useState(project)
