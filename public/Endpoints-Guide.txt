@@ -4,9 +4,9 @@ Login/Register These are your basic endpoints to access any protected info on th
 
 Base URL
 
-https://virtual-reality-funding.herokuapp.com/ Register URL
+https://virtual-reality-funding.herokuapp.com/      Register URL - Can do a POST request to this url to create a new user 
 
-Can do a POST request to this url to create a new user https://virtual-reality-funding.herokuapp.com/api/auth/register Login URL - Only requires username and password
+https://virtual-reality-funding.herokuapp.com/api/auth/register     Login URL - Only requires username and password
 
 Can do a POST request here to login and retrieve JWT for local storage https://virtual-reality-funding.herokuapp.com/api/auth/login Other Endpoints All of these endpoints will have full CRUD functionality, meaning you can do GET, POST, PUT, and DELETE to them. I've also allowed you to get by id by supplying the user/post id as well. I've listed all these below for you to make things as easy as possible.
 
