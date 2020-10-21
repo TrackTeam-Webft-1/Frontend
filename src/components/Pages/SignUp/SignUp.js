@@ -9,7 +9,7 @@ import { useForm } from './SignUpUseForm';
 
 const initialValues = {
   //text input
-  name: '',
+  userName: '',
   primaryEmail: '',
   password: '',
 };
@@ -28,10 +28,9 @@ const SignUpContainer = () => {
   let history = useHistory();
 
   const postNewUser = newUser => {
-    debugger;
     axios
       .post(
-        // insert post link,
+        'https://virtual-reality-funding.herokuapp.com/api/auth/register',
         newUser
       )
       .then(res => {
@@ -40,7 +39,7 @@ const SignUpContainer = () => {
         resetForm();
       })
       .catch(err => {
-        console.log(err);
+        console.log('sign up error: ', err);
       });
   };
 
@@ -55,7 +54,7 @@ const SignUpContainer = () => {
   const submitValues = evt => {
     evt.preventDefault();
     const newUser = {
-      name: formValues.name.trim(),
+      userName: formValues.userName.trim(),
       primaryEmail: formValues.primaryEmail.trim(),
       password: formValues.password.trim(),
     };

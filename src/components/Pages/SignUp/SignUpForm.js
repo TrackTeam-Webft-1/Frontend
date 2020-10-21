@@ -36,11 +36,11 @@ export default function RenderSignUp(props) {
             <TextField
               className={classes.inputs}
               id="outlined-basic"
-              label="Name"
+              label="Username"
               type="name"
               variant="filled"
-              name="name"
-              value={values.name}
+              name="userName"
+              value={values.userName}
               onChange={change}
             />
             <p>{formErrors.name}</p>

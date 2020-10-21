@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axiosWithAuth from '../../../state/AxiosWithAuth';
+import ProjectCard from '../../Common/ProjectCard';
 
 import Container from '@material-ui/core/Container';
 
@@ -27,8 +28,27 @@ const UserPage = ({ getData }) => {
     return (
       <Container maxWidth="md">
         <h1>Your projects:</h1>
+        {userProjects.map(project => (
+          <ProjectCard id = {project.project_id} project = {project} updateUserProjects = {setUserProjects}/>
+        ))}
       </Container>
     );
   };
   
-  export default UserPage();
+  export default UserPage;
+
+  // {userProjects.map(project => (
+  //   <ul key={project.projectId} onClick={() => editproject(project)}>
+  //     <span>
+  //       <span
+  //         onClick={e => {
+  //           e.stopPropagation();
+  //           deleteproject(project.projectId);
+  //         }}
+  //       >
+  //         delete project
+  //       </span>{' '}
+  //       {project.name}
+  //     </span>
+  //   </ul>
+  // ))}

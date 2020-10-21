@@ -36,13 +36,13 @@ export default function LoginForm(props) {
                     <TextField
                         className={classes.inputs}
                         id="outlined-basic"
-                        label="Email"
-                        type="email"
+                        label="Username"
+                        type="name"
                         variant="filled"
-                        name="primaryEmail"
+                        name="userName"
                         onChange={handleChange}
                     />
-                    <div className="error">{errors.primaryEmail}</div>
+                    <div className="error">{errors.userName}</div>
                     <TextField
                         className={classes.inputs}
                         id="filled-password-input"
