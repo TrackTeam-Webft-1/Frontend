@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import schema from './formSchema';
 
 const initialFormErrors = {
-  name: '',
+  userName: '',
   primaryEmail: '',
   password: '',
 };

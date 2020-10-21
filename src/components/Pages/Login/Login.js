@@ -7,7 +7,7 @@ import axiosWithAuth from '../../../state/AxiosWithAuth';
 import { useForm } from './LoginUseForm';
 
 const initialValues = {
-  primaryEmail: '',
+  userName: '',
   password: '',
 };
 
@@ -21,8 +21,8 @@ const LoginContainer = () => {
   let history = useHistory();
 
   const submit = () => {
-    const primaryEmail = formValues.primaryEmail.trim(),
-      password = formValues.password.trim();
+    const userName = formValues.userName.trim();
+    const password = formValues.password.trim();
     
 
     axiosWithAuth()

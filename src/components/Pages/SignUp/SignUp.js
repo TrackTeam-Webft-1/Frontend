@@ -9,7 +9,7 @@ import { useForm } from './SignUpUseForm';
 
 const initialValues = {
   //text input
-  name: '',
+  userName: '',
   primaryEmail: '',
   password: '',
 };
@@ -55,7 +55,7 @@ const SignUpContainer = () => {
   const submitValues = evt => {
     evt.preventDefault();
     const newUser = {
-      name: formValues.name.trim(),
+      userName: formValues.userName.trim(),
       primaryEmail: formValues.primaryEmail.trim(),
       password: formValues.password.trim(),
     };
