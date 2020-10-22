@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axiosWithAuth from '../../../state/AxiosWithAuth';
 import ProjectCard from '../../Common/ProjectCard';
-import AddProjectForm from '../../Common/addProject/AddProjectForm';
+import AddProjectForm from '../../Common/addProject/addProjectForm';
 
 import { connect } from 'react-redux';
 import { fetchProjects } from '../../../state/actions';
