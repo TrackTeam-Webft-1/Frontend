@@ -7,7 +7,7 @@ import schema from './formSchema';
 import axiosWithAuth from '../../../state/AxiosWithAuth';
 import { useForm } from './LoginUseForm';
 
-import { setEmail } from '../../../state/actions';
+import { setUsername } from '../../../state/actions';
 
 const initialValues = {
   userName: '',
@@ -59,8 +59,8 @@ const LoginContainer = () => {
 
 const mapStateToProps = (state) => {
   return {
-    email: state.email
+    username: state.username
   }
 }
 
-export default connect(mapStateToProps, { setEmail })(LoginContainer);
+export default connect(mapStateToProps, { setUsername })(LoginContainer);

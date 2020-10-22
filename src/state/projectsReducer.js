@@ -1,10 +1,10 @@
-import { FETCH_PROJECTS_START, FETCH_PROJECTS_SUCCESS, PUSH_PROJECT_START, PUSH_PROJECT_SUCCESS, SET_USER_EMAIL } from './actions';
+import { FETCH_PROJECTS_START, FETCH_PROJECTS_SUCCESS, PUSH_PROJECT_START, PUSH_PROJECT_SUCCESS, SET_USERNAME } from './actions';
 
 const initialState = {
     projects: [],
     isLoading: false,
     newProject: {},
-    email: ''
+    username: ''
 };
 
 const reducer = ( state = initialState, action) => {
@@ -21,11 +21,11 @@ const reducer = ( state = initialState, action) => {
                 ...state,
                 projects: action.payload
             }
-        case SET_USER_EMAIL:
-            console.log('running SET_USER_EMAIL')
+        case SET_USERNAME:
+            console.log('running SET_USERNAME')
             return {
                 ...state,
-                email: action.payload
+                username: action.payload
             }
         default:
             return state;
