@@ -20,7 +20,7 @@ const UserPage = (props) => {
       
       //call action object to get all projects
       // filteroutby client id/email
-      props.fetchProjects()
+      // props.fetchProjects()
       console.log('all projects in project state on the user page', props.projects);
       
       //const result = words.filter(word => word.length > 6);
@@ -28,7 +28,7 @@ const UserPage = (props) => {
       const newUserArray = props.projects.filter(project => project.username === props.username )
       
       // setUserProjects(newUserArray);
-      return newUserArray
+      setUserProjects(newUserArray);
     };
   
     // setUserProjects(newUserArray);
@@ -43,9 +43,8 @@ const UserPage = (props) => {
     // }, [props.projects]);
 
     useEffect(() => {
-      // getUserItems();
-      setUserProjects(getUserItems())
-    }, []);
+      getUserItems()
+    }, [getUserItems()]);
   
     return (
       <Container maxWidth="md">
@@ -64,7 +63,7 @@ const UserPage = (props) => {
     }
   }
 
-  export default connect(mapStateToProps, { fetchProjects })(UserPage);
+  export default connect(mapStateToProps, {})(UserPage);
 
   // {userProjects.map(project => (
   //   <ul key={project.projectId} onClick={() => editproject(project)}>
