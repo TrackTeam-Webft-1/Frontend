@@ -1,7 +1,7 @@
 import React from 'react';
 import CurrentProjects from './CurrentProjects'
 
-function LandingPage(props) {
+function LandingPage() {
   return (
     <div>
       <h1>Welcome to Fund the Future!</h1>

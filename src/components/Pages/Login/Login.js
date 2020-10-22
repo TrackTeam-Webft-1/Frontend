@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import LoginForm from './LoginForm';
 import { useHistory, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './index.css';
 import schema from './formSchema';
 import axiosWithAuth from '../../../state/AxiosWithAuth';
 import { useForm } from './LoginUseForm';
+
+import { setEmail } from '../../../state/actions';
 
 const initialValues = {
   userName: '',
@@ -54,4 +57,10 @@ const LoginContainer = () => {
   );
 };
 
-export default LoginContainer;
+const mapStateToProps = (state) => {
+  return {
+    email: state.email
+  }
+}
+
+export default connect(mapStateToProps, { setEmail })(LoginContainer);

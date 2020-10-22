@@ -1,32 +1,45 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
+import ProjectCard from '../../Common/ProjectCard'
 
-function CurrentProjects() {
+import { fetchProjects } from '../../../state/actions';
 
-  const initialProject = [];
-  const [projects, setProjects] = useState(initialProject);
+function CurrentProjects(props) {
 
-  const getProjects = () => {
-    console.log('running getProjects');
+  //const initialProject = [];
+  //const [projects, setProjects] = useState(initialProject);
 
-    axios.get('')//Insert get link
-      .then(projects => {
-        console.log('projects', projects.data);
-        setProjects(projects.data);
-      })
-      .catch(err => console.log(err));
-  };
+  // const getProjects = () => {
+  //   console.log('running getProjects');
+
+  //   axios.get('')//Insert get link
+  //     .then(projects => {
+  //       console.log('projects', projects.data);
+  //       setProjects(projects.data);
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
   useEffect(() => {
-    getProjects();
+    props.fetchProjects();
   }, []);
 
   return (
     <div>
       <h3>This is CurrentProjects</h3>
+      {props.projects.map(project => (
+          <ProjectCard id = {project.project_id} project = {project} />
+        ))}
     </div>
   );
 }
 
-export default CurrentProjects;
+const mapStateToProps = (state) => {
+  return {
+    projects: state.projects
+  }
+}
+
+export default connect(mapStateToProps, { fetchProjects })(CurrentProjects);
