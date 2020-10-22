@@ -50,7 +50,7 @@ const AddProjectForm = () => {
         const newProject = {
 
             //Question: little confused by this, again I think I need access to the email (or username if we reorganize) so that I can set it to state
-            email: values.email.trim(),
+            //email: values.email.trim(),
             title: values.title.trim(),
             contents: values.contents.trim(),
             donations: values.donations.trim(),
