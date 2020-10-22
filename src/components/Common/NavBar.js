@@ -84,7 +84,7 @@ export default function NavBar() {
             <Link
               component={RouterLink}
               color="inherit"
-              to="/landing"
+              to="/"
               className={classes.link}
             >
               Projects

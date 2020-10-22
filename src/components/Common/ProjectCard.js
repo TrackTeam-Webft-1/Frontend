@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 
 //function ProjectCard({ project, editProject, deleteProject })
 function ProjectCard(props) {
-  const { project, updateUserProjects } = props;
+  const { project } = props;
   const classes = useStyles();
   const [editing, setEditing] = useState(initialEditing)
   const [projectToEdit, setProjectToEdit] = useState(project)
@@ -34,7 +34,7 @@ function ProjectCard(props) {
     console.log('project to edit: ', projectToEdit)
   }
 
-  const deleteProject = (project, updateUserProjects) => {
+  const deleteProject = (project) => {
    
         // make a delete request to delete this color
         console.log('project to be deleted: ', project)

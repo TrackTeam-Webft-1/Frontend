@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const axiosWithAuth = () => {
   return axios.create({
-    //baseURL: , **Fill with actual url
+    baseURL: 'https://virtual-reality-funding.herokuapp.com', 
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     },

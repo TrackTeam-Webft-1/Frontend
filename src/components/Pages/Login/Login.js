@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import LoginForm from './LoginForm';
 import { useHistory, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './index.css';
 import schema from './formSchema';
 import axiosWithAuth from '../../../state/AxiosWithAuth';
 import { useForm } from './LoginUseForm';
+
+import { setUsername } from '../../../state/actions';
 
 const initialValues = {
   userName: '',
@@ -31,7 +34,7 @@ const LoginContainer = () => {
     
 
     axiosWithAuth()
-      .post('https://virtual-reality-funding.herokuapp.com/api/auth/login', newUser)//fill out necessary info
+      .post('/api/auth/login', newUser)//fill out necessary info
       .then(res => {
         console.log('onSubmit res:', res);
         window.localStorage.setItem('token', res.data.access_token);
@@ -54,4 +57,10 @@ const LoginContainer = () => {
   );
 };
 
-export default LoginContainer;
+const mapStateToProps = (state) => {
+  return {
+    username: state.username
+  }
+}
+
+export default connect(mapStateToProps, { setUsername })(LoginContainer);
