@@ -34,6 +34,7 @@ const SignUpContainer = () => {
         newUser
       )
       .then(res => {
+        console.log('registered new user')
         localStorage.setItem('token', res.token);
         history.push('/userpage');
         resetForm();
@@ -53,10 +54,13 @@ const SignUpContainer = () => {
 
   const submitValues = evt => {
     evt.preventDefault();
+    const mainID = Math.random()
     const newUser = {
+      id: mainID,
       username: formValues.username.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
+      user_id: mainID
     };
     postNewUser(newUser);
     resetForm(initialValues);
