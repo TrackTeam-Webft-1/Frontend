@@ -37,7 +37,7 @@ const LoginContainer = () => {
       .post('/api/auth/login', newUser)//fill out necessary info
       .then(res => {
         console.log('onSubmit res:', res);
-        window.localStorage.setItem('token', res.data.access_token);
+        window.localStorage.setItem('token', res.data.token);
         history.push('/userpage');
       })
       .catch(err => console.log('login error: ', err.response))
