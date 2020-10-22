@@ -25,7 +25,7 @@ const AddProjectForm = () => {
 
     const postNewProject = (newProject) => {
         axiosWithAuth()
-        .post('/api/posts', newProject)
+        .post('/api/posts/1', newProject)
             .then((res) => {
                 console.log('add project res: ', res)
                 //updateProjects(res.data)
@@ -47,6 +47,7 @@ const AddProjectForm = () => {
 
     const submitValues = (e) => {
         e.preventDefault()
+        console.log('Submitting values')
         const newProject = {
 
             //Question: little confused by this, again I think I need access to the email (or username if we reorganize) so that I can set it to state

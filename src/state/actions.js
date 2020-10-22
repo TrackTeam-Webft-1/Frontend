@@ -8,6 +8,7 @@
 
 //import axios
 import axios from 'axios';
+import axiosWithAuth from './AxiosWithAuth';
 
 export const FETCH_PROJECTS_START = "FETCH_PROJECTS_START";
 export const FETCH_PROJECTS_SUCCESS = "FETCH_PROJECTS_SUCCESS";
@@ -25,7 +26,7 @@ export const SET_USERNAME = "SET_USERNAME";
 export const fetchProjects = () => (dispatch) => {
     dispatch({ type: FETCH_PROJECTS_START });
     //Question: does this need to be axiosWithAuth?
-    axios.get('https://virtual-reality-funding.herokuapp.com/api/posts/')
+    axiosWithAuth().get('/api/posts/')
         .then((res) => {
             console.log("Project data in axios get call: ", res.data);
             dispatch({ type: PUSH_PROJECT_SUCCESS, payload: res.data})

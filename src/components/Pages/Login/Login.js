@@ -34,7 +34,7 @@ const LoginContainer = () => {
     
 
     axiosWithAuth()
-      .post('https://virtual-reality-funding.herokuapp.com/api/auth/login', newUser)//fill out necessary info
+      .post('/api/auth/login', newUser)//fill out necessary info
       .then(res => {
         console.log('onSubmit res:', res);
         window.localStorage.setItem('token', res.data.access_token);
