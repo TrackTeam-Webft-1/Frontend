@@ -39,11 +39,11 @@ export default function RenderSignUp(props) {
               label="Username"
               type="name"
               variant="filled"
-              name="userName"
-              value={values.userName}
+              name="username"
+              value={values.username}
               onChange={change}
             />
-            <p>{formErrors.name}</p>
+            <p>{formErrors.username}</p>
 
             <TextField
               className={classes.inputs}
@@ -51,11 +51,11 @@ export default function RenderSignUp(props) {
               label="Email"
               type="email"
               variant="filled"
-              name="primaryEmail"
-              value={values.primaryEmail}
+              name="email"
+              value={values.email}
               onChange={change}
             />
-            <p>{formErrors.primaryEmail}</p>
+            <p>{formErrors.email}</p>
 
             <TextField
               className={classes.inputs}
