@@ -28,7 +28,7 @@ function App () {
             <NavBar />
             <Switch>
                 {/* Switch userPage to PrivateRoute once endpoints are available */}
-                <PrivateRoute path="/user" component={UserPage} />
+                <PrivateRoute path="/userpage" component={UserPage} />
                 <Route path="/login" component={LoginPage} />
                 <Route path="/signup" component={SignUpPage} />
                 <Route path="/" exact component={LandingPage} />

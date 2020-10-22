@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axiosWithAuth from '../../../state/AxiosWithAuth';
 import ProjectCard from '../../Common/ProjectCard';
+import AddProjectForm from '../../Common/addProject/AddProjectForm';
 
 import { connect } from 'react-redux';
 import { fetchProjects } from '../../../state/actions';
@@ -52,7 +53,7 @@ const UserPage = (props) => {
         {userProjects.map(project => (
           <ProjectCard id = {project.project_id} project = {project} updateUserProjects = {setUserProjects}/>
         ))}
-        {/* Create an AddProject form here */}
+        <AddProjectForm />
       </Container>
     );
   };
