@@ -19,8 +19,8 @@ export const PUSH_PROJECT_SUCCESS = "PUSH_PROJECT_SUCCESS";
 export const EDIT_PROJECT_START = "EDIT_PROJECT_START";
 export const EDIT_PROJECT_SUCCESS = "EDIT_PROJECT_SUCCESS";
 
-// export const DELETE_PROJECT_START = "DELETE_PROJECT_START";
-// export const DELETE_PROJECT_SUCCESS = "DELETE_PROJECT_SUCCESS";
+export const DELETE_PROJECT_START = "DELETE_PROJECT_START";
+export const DELETE_PROJECT_SUCCESS = "DELETE_PROJECT_SUCCESS";
 
 
 //Question: not really a question, but if I could get access to the user_ID I could change this to SET_ID
@@ -55,6 +55,20 @@ export const editProject = (projectToEdit) => {
         console.log('project edit put success ERROR: ', err)
       })
 
+}
+
+export const deleteProject = (id) => {
+    //dispatch({ type: DELETE_PROJECT_START })
+    axios
+        .delete(`https://bw-rw-funding.herokuapp.com/api/project/${id}`)
+        .then((res) => {
+            //dispatch( {type: DELETE_PROJECT_SUCCESS, payload: res})
+            console.log('successful dispatch to delete project')
+            fetchProjects();
+        })
+        .catch((err) => {
+            console.log('successful dispatch to delete project')
+        })
 }
 
 export const setUsername = (username) => (dispatch) => {

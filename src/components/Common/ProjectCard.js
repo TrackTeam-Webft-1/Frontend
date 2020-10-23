@@ -8,7 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import axiosWithAuth from '../../state/AxiosWithAuth';
-import {editProject} from '../../state/actions';
+import {editProject, deleteProject} from '../../state/actions';
 
 const initialEditing = false;
 
@@ -54,11 +54,13 @@ function ProjectCard(props) {
 
   }
 
-  const deleteProject = (project) => {
+  const deleteProjFunc = (project) => {
    
         // make a delete request to delete this color
         console.log('project to be deleted: ', project)
-
+        console.log('project id: ', project.id)
+        const id = project.id
+        deleteProject(id)
         //the below text will probably need to be an action?
         // axiosWithAuth()
         //   .delete(`/projects/${project.id}`)
@@ -103,7 +105,7 @@ function ProjectCard(props) {
           <Button size="small" color="primary"
             onClick = {(e) => {
                 e.stopPropagation()
-                deleteProject(project)
+                deleteProjFunc(project)
             }
             }
           >

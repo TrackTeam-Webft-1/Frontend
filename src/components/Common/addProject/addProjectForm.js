@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-//import axios from 'axios';
+import axios from 'axios';
 import axiosWithAuth from '../../../state/AxiosWithAuth';
 
 const initialValues = {
@@ -25,9 +25,8 @@ const AddProjectForm = () => {
     };
 
     const postNewProject = (newProject) => {
-        axiosWithAuth()
-        .post('/api/', newProject)
-            .then((res) => {
+        axios.post('https://bw-rw-funding.herokuapp.com/api/fundraisers', newProject)
+            .then(res => {
                 console.log('add project res: ', res)
                 //updateProjects(res.data)
                 
@@ -54,8 +53,8 @@ const AddProjectForm = () => {
             id: Math.random(),
             project_name: values.project_name.trim(),
             project_founder: values.project_founder.trim(),
-            project_goal: values.project_goal.trim(),
-            project_description: values.project_description.trim()
+            project_description: values.project_description.trim(),
+            project_goal: values.project_goal.trim()
             
         };
         postNewProject(newProject);
