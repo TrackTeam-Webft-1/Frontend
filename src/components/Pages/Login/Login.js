@@ -4,13 +4,15 @@ import { useHistory, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './index.css';
 import schema from './formSchema';
+import axios from 'axios';
 import axiosWithAuth from '../../../state/AxiosWithAuth';
 import { useForm } from './LoginUseForm';
 
-import { setUsername } from '../../../state/actions';
+//import { setfirstname } from '../../../state/actions';
 
 const initialValues = {
-  userName: '',
+  firstname: '',
+  lastname: '',
   password: '',
 };
 
@@ -24,20 +26,22 @@ const LoginContainer = () => {
   let history = useHistory();
 
   const submit = () => {
-    const userName = formValues.userName.trim();
+    const firstname = formValues.firstname.trim();
+    const lastname = formValues.lastname.trim();
     const password = formValues.password.trim();
 
     const newUser = {
-      username: userName, 
+      firstname: firstname, 
+      lastname: lastname, 
       password: password
     }
     
 
-    axiosWithAuth()
-      .post('/api/auth/login', newUser)//fill out necessary info
-      .then(res => {
-        console.log('onSubmit res:', res);
+    axios.post('https://funding-platform-bw.herokuapp.com/api/auth/login', newUser)//fill out necessary info
+      .then((res) => {
+        console.log('login onSubmit res:', res);
         window.localStorage.setItem('token', res.data.token);
+        window.localStorage.setItem('user_id', res.data.user.user_id)
         history.push('/userpage');
       })
       .catch(err => console.log('login error: ', err.response))
@@ -57,10 +61,12 @@ const LoginContainer = () => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    username: state.username
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     firstname: state.firstname
+//   }
+// }
 
-export default connect(mapStateToProps, { setUsername })(LoginContainer);
+//export default connect(mapStateToProps, { setfirstname })(LoginContainer);
+
+export default LoginContainer;

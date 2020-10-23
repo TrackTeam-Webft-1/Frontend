@@ -4,7 +4,7 @@ import axios from 'axios';
 const axiosWithAuth = () => {
   const token = localStorage.getItem('token');
   return axios.create({
-    baseURL: 'https://virtual-reality-funding.herokuapp.com', 
+    baseURL: 'https://funding-platform-bw.herokuapp.com/', 
     headers: {
       Authorization: token,
     },
