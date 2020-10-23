@@ -26,10 +26,10 @@ const UserPage = (props) => {
       
       //const result = words.filter(word => word.length > 6);
       
-      const newUserArray = props.projects.filter(project => project.username === props.username )
+      //const newUserArray = props.projects.filter(project => project.username === props.username )
       
       // setUserProjects(newUserArray);
-      setUserProjects(newUserArray);
+      //setUserProjects(newUserArray);
     };
   
     // setUserProjects(newUserArray);
@@ -44,14 +44,15 @@ const UserPage = (props) => {
     // }, [props.projects]);
 
     useEffect(() => {
+      console.log("RERENDER")
       getUserItems()
     }, []);
   
     return (
       <Container maxWidth="md">
         <h1>Your projects:</h1>
-        {userProjects.map(project => (
-          <ProjectCard id = {project.project_id} project = {project} updateUserProjects = {setUserProjects}/>
+        {props.projects.map(project => (
+          <ProjectCard id = {project.id} project = {project}/>
         ))}
         <AddProjectForm />
       </Container>

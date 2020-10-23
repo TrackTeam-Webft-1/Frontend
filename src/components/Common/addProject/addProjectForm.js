@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-//import axios from 'axios';
+import axios from 'axios';
 import axiosWithAuth from '../../../state/AxiosWithAuth';
 
 const initialValues = {
-    title: '',
-    contents: '',
-    donations: "$"
+    project_name: '',
+    project_founder: '',
+    project_goal: "$",
+    project_description: "",
 }
 
 const AddProjectForm = () => {
@@ -24,9 +25,8 @@ const AddProjectForm = () => {
     };
 
     const postNewProject = (newProject) => {
-        axiosWithAuth()
-        .post('/api/posts/1', newProject)
-            .then((res) => {
+        axios.post('https://bw-rw-funding.herokuapp.com/api/fundraisers', newProject)
+            .then(res => {
                 console.log('add project res: ', res)
                 //updateProjects(res.data)
                 
@@ -50,14 +50,12 @@ const AddProjectForm = () => {
         console.log('Submitting values')
         const newProject = {
 
-            //Question: little confused by this, again I think I need access to the email (or username if we reorganize) so that I can set it to state
-            //email: values.email.trim(),
-            title: values.title.trim(),
-            contents: values.contents.trim(),
-            donations: values.donations.trim(),
-            //This also needs to be passed in, so like the email or userna,e, I need access to it. Hmm, actually if I ad just the user_id, i'd probably be okay wihout the username or email
-            users_id: 1,
-            project_id: Math.random()
+            id: Math.random(),
+            project_name: values.project_name.trim(),
+            project_founder: values.project_founder.trim(),
+            project_description: values.project_description.trim(),
+            project_goal: values.project_goal.trim()
+            
         };
         postNewProject(newProject);
         setValues(initialValues);
@@ -68,33 +66,43 @@ const AddProjectForm = () => {
         <div>
             <h2>Add project:</h2>
             <form className = 'project-form' onSubmit = {submitValues}>
-                <label>Title: 
+                <label>Name: 
                     <input 
                         type = 'text'
-                        name = 'title'
+                        name = 'project_name'
                         onChange = {handleChanges}
-                        value = {values.title}
-                        placeholder = 'enter title'
+                        value = {values.project_name}
+                        placeholder = 'enter project name'
                     />
                 </label>
 
-                <label>Contents: 
+                <label>Founder: 
                     <input 
                         type = 'text'
-                        name = 'contents'
+                        name = 'project_founder'
                         onChange = {handleChanges}
-                        value = {values.contents}
-                        placeholder = 'enter contents'
+                        value = {values.project_founder}
+                        placeholder = 'enter founder'
                     />
                 </label>
 
-                <label>Donations: 
+                <label>Goal: 
                     <input 
                         type = 'text'
-                        name = 'donations'
+                        name = 'project_goal'
                         onChange = {handleChanges}
-                        value = {values.donations}
-                        placeholder = 'enter donations'
+                        value = {values.project_goal}
+                        placeholder = 'enter goal'
+                    />
+                </label>
+
+                <label>Description: 
+                    <input 
+                        type = 'text'
+                        name = 'project_description'
+                        onChange = {handleChanges}
+                        value = {values.project_description}
+                        placeholder = 'enter description'
                     />
                 </label>
 

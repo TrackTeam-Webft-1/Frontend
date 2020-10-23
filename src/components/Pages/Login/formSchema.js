@@ -1,11 +1,14 @@
 import * as yup from 'yup';
 
 export default yup.object().shape({
-    userName: yup
+    firstname: yup
       .string()
-      .required('Username is required'),
+      .required('firstname is required'),
+    lastname: yup
+      .string()
+      .required('lastname is required'),
     password: yup
       .string()
-      .required('Password if Required')
+      .required('Password is Required')
       .min(6),
   });

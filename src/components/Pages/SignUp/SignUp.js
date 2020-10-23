@@ -9,8 +9,8 @@ import { useForm } from './SignUpUseForm';
 
 const initialValues = {
   //text input
-  username: '',
-  email: '',
+  firstname: '',
+  lastname: '',
   password: '',
 };
 
@@ -30,13 +30,13 @@ const SignUpContainer = () => {
   const postNewUser = newUser => {
     axios
       .post(
-        'https://virtual-reality-funding.herokuapp.com/api/auth/register',
+        'https://funding-platform-bw.herokuapp.com/api/auth/register',
         newUser
       )
-      .then(res => {
-        console.log('registered new user')
-        localStorage.setItem('token', res.token);
-        history.push('/userpage');
+      .then((res) => {
+        console.log('registered new user data', res)
+        //make a setRegistered action object
+        // -needs to set message to state
         resetForm();
       })
       .catch(err => {
@@ -54,13 +54,10 @@ const SignUpContainer = () => {
 
   const submitValues = evt => {
     evt.preventDefault();
-    const mainID = Math.random()
     const newUser = {
-      id: mainID,
-      username: formValues.username.trim(),
-      email: formValues.email.trim(),
-      password: formValues.password.trim(),
-      user_id: mainID
+      firstname: formValues.firstname.trim(),
+      lastname: formValues.lastname.trim(),
+      password: formValues.password.trim()
     };
     postNewUser(newUser);
     resetForm(initialValues);

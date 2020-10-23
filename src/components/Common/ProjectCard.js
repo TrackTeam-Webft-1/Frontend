@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import {connect} from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -7,6 +8,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import axiosWithAuth from '../../state/AxiosWithAuth';
+import {editProject, deleteProject} from '../../state/actions';
 
 const initialEditing = false;
 
@@ -22,23 +25,43 @@ const useStyles = makeStyles({
 
 //function ProjectCard({ project, editProject, deleteProject })
 function ProjectCard(props) {
-  const { project } = props;
+  const { project, editProject, deleteProject } = props;
   const classes = useStyles();
   const [editing, setEditing] = useState(initialEditing)
   const [projectToEdit, setProjectToEdit] = useState(project)
 
+  useEffect(() => {
+    console.log("RERENDER ProjectCard")
+  }, []);
+
+  ///api/projects/:id
+
   const saveEdit = (e) => {
     e.preventDefault();
     // Make a put request to save your updated color, this should be an action 
-    
-    console.log('project to edit: ', projectToEdit)
+    console.log('project to edit: ', projectToEdit);
+    editProject(projectToEdit);
+    console.log('after editProject')
+    console.log('project to edit: ', projectToEdit);
+    // axiosWithAuth()
+    //   .put(`/api/projects/${projectToEdit.id}`)
+    //   .then((res) => {
+    //     console.log('project edit put success res: ', res)
+    //   })
+    //   .catch((err) => {
+    //     console.log('project edit put success ERROR: ', err)
+    //   })
+      
+
   }
 
-  const deleteProject = (project) => {
+  const deleteProjFunc = (project) => {
    
         // make a delete request to delete this color
         console.log('project to be deleted: ', project)
-
+        console.log('project id: ', project.id)
+        const id = project.id
+        deleteProject(id)
         //the below text will probably need to be an action?
         // axiosWithAuth()
         //   .delete(`/projects/${project.id}`)
@@ -57,13 +80,16 @@ function ProjectCard(props) {
       <CardActionArea>
         <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-                {project.title}
+                {project.project_name}
+            </Typography>
+            <Typography gutterBottom variant="h5" component="h3">
+                {project.project_founder}
             </Typography>
             <Typography color="textPrimary" component="h4">
-                {project.donations}
+                {project.project_goal}
             </Typography>
             <Typography color="textPrimary" component="p">
-                {project.contents}
+                {project.project_description}
             </Typography>
         </CardContent>
       </CardActionArea>
@@ -80,7 +106,7 @@ function ProjectCard(props) {
           <Button size="small" color="primary"
             onClick = {(e) => {
                 e.stopPropagation()
-                deleteProject(project)
+                deleteProjFunc(project)
             }
             }
           >
@@ -90,38 +116,38 @@ function ProjectCard(props) {
       {editing ? (
           <div>
             <h3>Edit Project</h3>
-            <form onSubmit={saveEdit}>
+            <form onSubmit={saveEdit} >
             <label>
-                Project Title:
+                Name:
                 <input
                 onChange={e =>
-                    setProjectToEdit({ ...projectToEdit, title: e.target.value })
+                    setProjectToEdit({ ...projectToEdit, project_name: e.target.value })
                 }
-                value={projectToEdit.project}
+                value={projectToEdit.project_name}
                 />
             </label>
             <label>
-                Contents:
+                Goal:
                 <input
                 onChange={e =>
                     setProjectToEdit({
                     ...projectToEdit,
-                    contents: e.target.value 
+                    project_goal: e.target.value
                     })
                 }
-                value={projectToEdit.contents}
+                value={projectToEdit.project_goal}
                 />
             </label>
             <label>
-                Donations:
+                Description:
                 <input
                 onChange={e =>
                     setProjectToEdit({
                     ...projectToEdit,
-                    donations: e.target.value + project.donations
+                    project_description: e.target.value
                     })
                 }
-                value={projectToEdit.donations}
+                value={projectToEdit.project_description}
                 />
             </label>
             <div className="button-row">
@@ -137,47 +163,4 @@ function ProjectCard(props) {
   );
 }
 
-export default ProjectCard;
-
-// {editButtons ? (
-//     <CardActions>
-//       <Button size="small" color="primary">
-//         Edit
-//       </Button>
-//       <Button size="small" color="primary">
-//         Delete
-//       </Button>
-//     </CardActions>
-//   ) : (
-//     undefined
-//   )}
-
-// const saveEdit = e => {
-//     e.preventDefault();
-//     // Make a put request to save your updated color
-//     // think about where will you get the id from...
-//     // where is is saved right now?
-//     // bada bing and a bada boom
-//     console.log('project to edit: ', projectToEdit)
-//     axiosWithAuth()
-//       .put(`/projects/${projectToEdit.id}`, projectToEdit)
-//       .then((res) => {
-//         console.log('save project res: ', res)
-//         console.log('save project event: ', e)
-//         setEditing(false)
-//         const newEditProjects = projects.map(project => {
-//           if(project.id === res.id){
-//             return res
-//           }
-//           else{
-//             return project
-//           }
-//         });
-//         updateprojects(newEditprojects)
-//         console.log('all projects: ', projects);
-//       })
-//       .catch((err) => {
-//         console.log('project to edit error: ', err)
-//       })
-
-//   };
+export default connect(null, {deleteProject, editProject})(ProjectCard);
