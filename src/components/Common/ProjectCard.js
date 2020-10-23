@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import {connect} from 'react-redux';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -24,7 +25,7 @@ const useStyles = makeStyles({
 
 //function ProjectCard({ project, editProject, deleteProject })
 function ProjectCard(props) {
-  const { project } = props;
+  const { project, editProject, deleteProject } = props;
   const classes = useStyles();
   const [editing, setEditing] = useState(initialEditing)
   const [projectToEdit, setProjectToEdit] = useState(project)
@@ -162,4 +163,4 @@ function ProjectCard(props) {
   );
 }
 
-export default ProjectCard;
+export default connect(null, {deleteProject, editProject})(ProjectCard);

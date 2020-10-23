@@ -39,17 +39,17 @@ export const fetchProjects = () => (dispatch) => {
         })
 }
 
-export const editProject = (projectToEdit) => {
+export const editProject = (projectToEdit) => (dispatch) => {
     console.log('above dispatch');
-    //dispatch({ type: EDIT_PROJECT_START });
-    // console.log('below dispatch');
-    // console.log('project edit action object: ', projectToEdit);
+    dispatch({ type: EDIT_PROJECT_START });
+    console.log('below dispatch');
+    console.log('project edit action object: ', projectToEdit);
     axiosWithAuth()
       .put(`/api/funding/:${projectToEdit.id}`)
       .then((res) => {
         console.log('project edit put success res: ', res)
-        // dispatch({ type: FETCH_PROJECTS_SUCCESS, payload: res.data})
-        fetchProjects();
+        dispatch({ type: EDIT_PROJECT_SUCCESS, payload: res.data})
+        // fetchProjects();
       })
       .catch((err) => {
         console.log('project edit put success ERROR: ', err)
@@ -57,17 +57,17 @@ export const editProject = (projectToEdit) => {
 
 }
 
-export const deleteProject = (id) => {
-    //dispatch({ type: DELETE_PROJECT_START })
+export const deleteProject = (id) => (dispatch) => {
+    dispatch({ type: DELETE_PROJECT_START })
     axios
         .delete(`https://bw-rw-funding.herokuapp.com/api/project/${id}`)
         .then((res) => {
-            //dispatch( {type: DELETE_PROJECT_SUCCESS, payload: res})
+            dispatch( {type: DELETE_PROJECT_SUCCESS, payload: id})
             console.log('successful dispatch to delete project')
-            fetchProjects();
+            //fetchProjects();
         })
         .catch((err) => {
-            console.log('successful dispatch to delete project')
+            console.log('unsuccessful dispatch to delete project: ', err)
         })
 }
 

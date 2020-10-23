@@ -37,13 +37,14 @@ const reducer = ( state = initialState, action) => {
             console.log('running DELETE_PROJECT_START')
             return {
                 ...state,
-                isLoading: false
+                isLoading: true
             }
         case DELETE_PROJECT_SUCCESS:
             console.log('running DELETE_PROJECT_SUCCESS')
             return {
                 ...state,
-                projects: state.projects.map(item => {
+                isLoading: false,
+                projects: state.projects.filter(item => {
                     return item.id !== action.payload
                 })
             }
