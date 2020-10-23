@@ -27,11 +27,11 @@ export const fetchProjects = () => (dispatch) => {
     dispatch({ type: FETCH_PROJECTS_START });
     //Question: does this need to be axiosWithAuth?
     axiosWithAuth().get('/api/posts/')
-        .then((res) => {
+        .then(res => {
             console.log("Project data in axios get call: ", res.data);
             dispatch({ type: PUSH_PROJECT_SUCCESS, payload: res.data})
         })
-        .catch((err) => {
+        .catch(err => {
             console.log('fetchProjects err: ', err)
         })
 }
